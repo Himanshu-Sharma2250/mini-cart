@@ -96,3 +96,28 @@ export const updateQuantity = async (req, res) => {
         })
     }
 };
+
+export const getAllCartItems = async (req, res) => {
+    try {
+        const items = await Cart.find();
+
+        if (!items) {
+            return res.status(400).json({
+                success: false,
+                message:"Cart is empty"
+            })
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "All items fetched successfully",
+            items: items
+        })
+    } catch (error) {
+        console.error("Error fetching products: ", error);
+        res.status(500).json({
+            success: false,
+            message: "Error fetching products"
+        })
+    }
+}
