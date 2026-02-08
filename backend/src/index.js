@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 
 import connect_db from "./utils/db.js";
 import productRouter from "./routes/product.route.js";
+import cartRouter from "./routes/cart.route.js";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/v1/product", productRouter);
+app.use("/api/v1/cart", cartRouter);
 
 app.listen(port, () => {
     console.log(`Listening at port: ${port}`);
